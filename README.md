@@ -34,10 +34,9 @@ npm run lesson -- lessons/01-first-request.ts
 
 ## Editor
 
-Requires the Zed extension **Effect Language Service (tsgo)**, which provides the
-`effect-tsgo` language server. `.zed/settings.json` turns off vtsls and
-typescript-language-server and points `effect-tsgo` at this project's patched
-`node_modules/@typescript/typescript-win32-x64/lib/tsc.exe --lsp --stdio`, so the
-editor uses the same tsc (and Effect plugin settings) as `npm run typecheck`.
-The binary path is absolute. Update it if you move the repo. On Windows, don't use
-`node_modules/.bin/tsc`: it's a shell script that Zed can't launch.
+Any editor that runs the patched tsc as its language server shows the Effect
+diagnostics. In Zed, install the **Effect Language Service (tsgo)** extension,
+which provides the `effect-tsgo` language server. Optionally, point it at this
+project's patched `tsc.exe` (under `node_modules/@typescript/<platform>/lib/`),
+using `--lsp --stdio` and an absolute path, so the editor uses the same tsc as
+`npm run typecheck`. Editor settings (`.zed/`) are kept local and not committed.
