@@ -1,0 +1,22 @@
+{
+  "name": "claude-api-course",
+  "version": "1.0.0",
+  "description": "Anthropic Academy \"Building with the Claude API\" course, in Effect TS v4",
+  "scripts": {
+    "typecheck": "tsc -p .",
+    "lesson": "tsx --env-file-if-exists=.env",
+    "prepare": "effect-tsgo patch --typescript --no-oxlint"
+  },
+  "keywords": [],
+  "type": "module",
+  "dependencies": {
+    "@anthropic-ai/sdk": "^1.3.0",
+    "@effect/platform-node": "^4.1.0",
+    "effect": "^4.1.0"
+  },
+  "devDependencies": {
+    "@effect/tsgo": "0.63.0",
+    "tsx": "^4.23.15",
+    "typescript": "^7.0.2"
+  }
+}
