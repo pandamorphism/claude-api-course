@@ -1,5 +1,13 @@
 import Anthropic from "@anthropic-ai/sdk"
-import { Config, Context, Data, Effect, Layer, Redacted, Schedule } from "effect"
+import {
+  Config,
+  Context,
+  Data,
+  Effect,
+  Layer,
+  Redacted,
+  Schedule
+} from "effect"
 
 export const DEFAULT_MODEL = "claude-opus-5-5"
 
@@ -14,17 +22,23 @@ const isRetryable = (error: ClaudeError): boolean =>
   [408, 409, 429].includes(error.cause.status) ||
   error.cause.status >= 500
 
-export class Claude extends Context.Service<Claude, {
-  readonly create: (
-    params: Anthropic.MessageCreateParamsNonStreaming
-  ) => Effect.Effect<Anthropic.Message, ClaudeError>
-}>()("Claude") {
+export class Claude extends Context.Service<
+  Claude,
+  {
+    readonly create: (
+      params: Anthropic.MessageCreateParamsNonStreaming
+    ) => Effect.Effect<Anthropic.Message, ClaudeError>
+  }
+>()("Claude") {
   static readonly layer = Layer.effect(
     Claude,
-    Effect.gen(function*() {
+    Effect.gen(function* () {
       const apiKey = yield* Config.Redacted("ANTHROPIC_API_KEY")
       // Retries are owned by Effect below, so turn off the SDK's own.
-      const client = new Anthropic({ apiKey: Redacted.value(apiKey), maxRetries: 0 })
+      const client = new Anthropic({
+        apiKey: Redacted.value(apiKey),
+        maxRetries: 0
+      })
 
       const create = (params: Anthropic.MessageCreateParamsNonStreaming) =>
         Effect.tryPromise({
@@ -45,4 +59,6 @@ export class Claude extends Context.Service<Claude, {
 
 /** Concatenates the text blocks of a response (skipping thinking/tool blocks). */
 export const textOf = (message: Anthropic.Message): string =>
-  message.content.flatMap((block) => (block.type === "text" ? [block.text] : [])).join("")
+  message.content
+    .flatMap((block) => (block.type === "text" ? [block.text] : []))
+    .join("")
