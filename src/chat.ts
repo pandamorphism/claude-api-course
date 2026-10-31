@@ -1,8 +1,8 @@
+import Anthropic from "@anthropic-ai/sdk"
 import { Effect } from "effect"
 import { Claude, DEFAULT_MODEL, textOf } from "./claude.js"
-import { Anthropic } from "@anthropic-ai/sdk"
 
-type History = ReadonlyArray<Anthropic.MessageParam>
+export type History = ReadonlyArray<Anthropic.MessageParam>
 
 export const chat = Effect.fn("chat")(function* (
   memory: History,

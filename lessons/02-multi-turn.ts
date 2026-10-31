@@ -1,8 +1,7 @@
-import { Effect, Console } from "effect"
-import { Claude, DEFAULT_MODEL, textOf } from "../src/claude.js"
-import Anthropic from "@anthropic-ai/sdk"
 import { NodeRuntime } from "@effect/platform-node"
+import { Console, Effect } from "effect"
 import { chat } from "../src/chat.js"
+import { Claude } from "../src/claude.js"
 
 const program = Effect.gen(function* () {
   const r1 = yield* chat(
