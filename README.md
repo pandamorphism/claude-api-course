@@ -22,7 +22,7 @@ The course examples are in Python; here they are translated to TypeScript using
 
 ```sh
 npm install          # also patches tsc with the Effect language service (prepare script)
-cp .env.example .env # then fill in ANTHROPIC_API_KEY
+echo "ANTHROPIC_API_KEY=sk-ant-..." > .env  # your API key
 ```
 
 ## Running
