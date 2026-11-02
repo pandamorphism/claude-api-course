@@ -57,6 +57,17 @@ export class Claude extends Context.Service<
   )
 }
 
+/** One-line summary of a ClaudeError, e.g. "400 invalid_request_error: temperature: ... (req_...)". */
+export const describeError = (error: ClaudeError): string => {
+  const { cause } = error
+  if (cause instanceof Anthropic.APIError) {
+    const body = cause.error as { error?: { message?: string } } | undefined
+    const message = body?.error?.message ?? cause.message
+    return `${cause.status ?? "network"} ${cause.type ?? "error"}: ${message} (${cause.requestID ?? "no request id"})`
+  }
+  return cause instanceof Error ? cause.message : String(cause)
+}
+
 /** Concatenates the text blocks of a response (skipping thinking/tool blocks). */
 export const textOf = (message: Anthropic.Message): string =>
   message.content
