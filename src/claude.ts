@@ -1,4 +1,5 @@
 import Anthropic from "@anthropic-ai/sdk"
+import { RawMessageStreamEvent } from "@anthropic-ai/sdk/resources"
 import {
   Config,
   Context,
@@ -6,14 +7,17 @@ import {
   Effect,
   Layer,
   Redacted,
-  Schedule
+  Schedule,
+  Stream
 } from "effect"
 
 export const DEFAULT_MODEL = "claude-opus-5-5"
 
 export class ClaudeError extends Data.TaggedError("ClaudeError")<{
   readonly cause: unknown
-}> {}
+}> {
+  static readonly fromCause = (cause: unknown) => new ClaudeError({ cause })
+}
 
 // 408/409/429/5xx and network failures are worth retrying; 400/401/404 are not.
 const isRetryable = (error: ClaudeError): boolean =>
@@ -28,6 +32,9 @@ export class Claude extends Context.Service<
     readonly create: (
       params: Anthropic.MessageCreateParamsNonStreaming
     ) => Effect.Effect<Anthropic.Message, ClaudeError>
+    readonly stream: (
+      params: Omit<Anthropic.MessageCreateParamsStreaming, "stream">
+    ) => Stream.Stream<RawMessageStreamEvent, ClaudeError>
   }
 >()("Claude") {
   static readonly layer = Layer.effect(
@@ -43,7 +50,7 @@ export class Claude extends Context.Service<
       const create = (params: Anthropic.MessageCreateParamsNonStreaming) =>
         Effect.tryPromise({
           try: (signal) => client.messages.create(params, { signal }),
-          catch: (cause) => new ClaudeError({ cause })
+          catch: ClaudeError.fromCause
         }).pipe(
           Effect.retry({
             schedule: Schedule.exponential("500 millis"),
@@ -52,7 +59,20 @@ export class Claude extends Context.Service<
           })
         )
 
-      return Claude.of({ create })
+      const stream = (
+        params: Omit<Anthropic.MessageCreateParamsStreaming, "stream">
+      ) =>
+        Effect.tryPromise({
+          try: (signal) =>
+            client.messages.create({ ...params, stream: true }, { signal }),
+          catch: ClaudeError.fromCause
+        }).pipe(
+          Effect.map((events) =>
+            Stream.fromAsyncIterable(events, ClaudeError.fromCause)
+          ),
+          Stream.unwrap
+        )
+      return Claude.of({ create, stream })
     })
   )
 }
