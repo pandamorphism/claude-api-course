@@ -1,4 +1,5 @@
-import { Anthropic } from "@anthropic-ai/sdk"
+// The SDK types no longer have `temperature`, so we bypass the excess-property check.
+import Anthropic from "@anthropic-ai/sdk"
 import { NodeRuntime } from "@effect/platform-node"
 import { Console, Effect } from "effect"
 import { Claude, DEFAULT_MODEL, describeError, textOf } from "../src/claude.js"
@@ -13,7 +14,7 @@ const ask = Effect.fn("ask")(function* (model: string, temperature: number) {
     max_tokens: 50,
     messages: [{ role: "user", content: PROMPT }]
   }
-  // The SDK types no longer have `temperature`, so we bypass the excess-property check.
+
   const response = yield* claude.create({
     ...params,
     temperature
@@ -22,8 +23,7 @@ const ask = Effect.fn("ask")(function* (model: string, temperature: number) {
 })
 
 const askDefaultModel = Effect.gen(function* () {
-  // anthropic-version 2026-10-21 removed sampling params.
-  const response = yield* ask(DEFAULT_MODEL, 1)
+  const response = yield* ask(DEFAULT_MODEL, 0)
   yield* Console.log("response", response)
 }).pipe(
   Effect.catchTag("ClaudeError", (e) =>
