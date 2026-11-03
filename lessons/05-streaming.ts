@@ -2,7 +2,7 @@ import { NodeRuntime } from "@effect/platform-node"
 import { Clock, Console, Effect, Option, Ref, Stream } from "effect"
 import { Claude, DEFAULT_MODEL, describeError } from "../src/claude.js"
 
-const askStream = Effect.fn("AskStream")(function* () {
+const askStream = Effect.fn("askStream")(function* () {
   const claude = yield* Claude
   const timeMetrics = yield* Ref.make<{
     firstChunkResponse: Option.Option<number>
@@ -38,7 +38,10 @@ const askStream = Effect.fn("AskStream")(function* () {
         })
       ),
       Stream.map((textDelta) => textDelta.text),
-      Stream.runForEach((text) => Effect.sync(() => process.stdout.write(text)))
+      Stream.runForEach((text) =>
+        Effect.sync(() => process.stdout.write(text))
+      ),
+      Effect.tap(() => Console.log())
     )
   const end = yield* Clock.currentTimeMillis
   const metrics = yield* Ref.get(timeMetrics)

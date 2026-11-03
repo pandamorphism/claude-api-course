@@ -1,5 +1,4 @@
 import Anthropic from "@anthropic-ai/sdk"
-import { RawMessageStreamEvent } from "@anthropic-ai/sdk/resources"
 import {
   Config,
   Context,
@@ -34,7 +33,7 @@ export class Claude extends Context.Service<
     ) => Effect.Effect<Anthropic.Message, ClaudeError>
     readonly stream: (
       params: Omit<Anthropic.MessageCreateParamsStreaming, "stream">
-    ) => Stream.Stream<RawMessageStreamEvent, ClaudeError>
+    ) => Stream.Stream<Anthropic.RawMessageStreamEvent, ClaudeError>
   }
 >()("Claude") {
   static readonly layer = Layer.effect(
