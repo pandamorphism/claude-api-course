@@ -19,7 +19,7 @@ const program = Effect.gen(function* () {
       {
         role: "user",
         content:
-          "Invent a marketplace listing for a vintage Showa-era Japanese teapot. "
+          "Invent a marketplace listing for a vintage Showa-era Japanese teapot."
       }
     ]
   })
