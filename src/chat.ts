@@ -1,5 +1,5 @@
 import Anthropic from "@anthropic-ai/sdk"
-import { Console, Effect, Stream } from "effect"
+import { Effect, Stream } from "effect"
 import { Claude, DEFAULT_MODEL, textOf } from "./claude.js"
 
 export type History = ReadonlyArray<Anthropic.MessageParam>
@@ -28,35 +28,73 @@ export const chat = Effect.fn("chat")(function* (
 export const chatStream = Effect.fn("chatStream")(function* (
   memory: History,
   userText: string,
-  options: ChatOptions = {}
+  {
+    onDelta,
+    ...requestOptions
+  }: ChatOptions & { onDelta?: (text: string) => void } = {}
 ) {
   const claude = yield* Claude
   const withUser: History = [...memory, { role: "user", content: userText }]
-  const text = yield* claude
+  const result = yield* claude
     .stream({
       messages: [...withUser],
-      ...options,
+      ...requestOptions,
       max_tokens: 1000,
       model: DEFAULT_MODEL
     })
     .pipe(
-      Stream.tap((chunk) =>
-        chunk.type === "message_delta"
-          ? Console.log(
-              `\nStop reason is: ${chunk.delta.stop_reason} \n and the output tokens are: ${chunk.usage.output_tokens}`
-            )
-          : Effect.void
-      ),
-      Stream.filter((chunk) => chunk.type === "content_block_delta"),
-      Stream.map((contentBlockDelta) => contentBlockDelta.delta),
-      Stream.filter((delta) => delta.type === "text_delta"),
-      Stream.map((textDelta) => textDelta.text),
-      Stream.tap((text) => Effect.sync(() => process.stdout.write(text))),
-      Stream.runFold(
-        () => "",
-        (acc, text) => acc + text
+      Stream.tap((chunk) => {
+        if (
+          chunk.type === "content_block_delta" &&
+          chunk.delta.type === "text_delta"
+        ) {
+          const deltaText = chunk.delta.text
+          return Effect.sync(() => onDelta?.(deltaText))
+        }
+        return Effect.void
+      }),
+      Stream.runFold<
+        {
+          txt: string
+          stopReason: Anthropic.StopReason | null
+          outputTokens: number | null
+        },
+        Anthropic.RawMessageStreamEvent
+      >(
+        () => ({
+          txt: "",
+          stopReason: null,
+          outputTokens: null
+        }),
+        (acc, chunk) => {
+          if (chunk.type === "message_delta") {
+            return {
+              txt: acc.txt,
+              stopReason: chunk.delta.stop_reason,
+              outputTokens: chunk.usage.output_tokens
+            }
+          } else if (
+            chunk.type === "content_block_delta" &&
+            chunk.delta.type === "text_delta"
+          ) {
+            return {
+              txt: acc.txt + chunk.delta.text,
+              stopReason: acc.stopReason,
+              outputTokens: acc.outputTokens
+            }
+          }
+          return acc
+        }
       )
     )
-  const history: History = [...withUser, { role: "assistant", content: text }]
-  return { text, history }
+  const history: History = [
+    ...withUser,
+    { role: "assistant", content: result.txt }
+  ]
+  return {
+    text: result.txt,
+    stopReason: result.stopReason,
+    outputTokens: result.outputTokens,
+    history
+  }
 })
