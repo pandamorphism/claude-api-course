@@ -55,7 +55,7 @@ export const chatStream = Effect.fn("chatStream")(function* (
       Stream.runFold(
         () => "",
         (acc, text) => acc + text
-      ),
+      )
     )
   const history: History = [...withUser, { role: "assistant", content: text }]
   return { text, history }

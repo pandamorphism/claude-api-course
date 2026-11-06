@@ -5,7 +5,14 @@
   "scripts": {
     "typecheck": "tsc -p .",
     "lesson": "tsx --env-file-if-exists=.env",
-    "prepare": "effect-tsgo patch --typescript --no-oxlint"
+    "format": "prettier --write lessons src",
+    "prepare": "effect-tsgo patch --typescript --no-oxlint && simple-git-hooks"
+  },
+  "simple-git-hooks": {
+    "pre-commit": "npx lint-staged"
+  },
+  "lint-staged": {
+    "*.{ts,js,json,md}": "prettier --write"
   },
   "keywords": [],
   "type": "module",
@@ -16,7 +23,9 @@
   },
   "devDependencies": {
     "@effect/tsgo": "0.63.0",
+    "lint-staged": "^17.6.0",
     "prettier": "^3.9.10",
+    "simple-git-hooks": "^2.14.0",
     "tsx": "^4.23.15",
     "typescript": "^7.0.2"
   }
