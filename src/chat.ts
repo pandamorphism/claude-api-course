@@ -17,13 +17,22 @@ export const chat = Effect.fn("chat")(function* (
   const response = yield* claude.create({
     max_tokens: 1024,
     model: DEFAULT_MODEL,
-    ...options,
-    messages: [...withUser]
+    messages: [...withUser],
+    ...options
   })
   const text = textOf(response)
   const history: History = [...withUser, { role: "assistant", content: text }]
   return { text, history }
 })
+type StreamResult = {
+  txt: string
+  stopReason: Anthropic.StopReason | null
+  outputTokens: number | null
+}
+const isTextDelta = (
+  e: Anthropic.RawMessageStreamEvent
+): e is Anthropic.RawContentBlockDeltaEvent & { delta: Anthropic.TextDelta } =>
+  e.type === "content_block_delta" && e.delta.type === "text_delta"
 
 export const chatStream = Effect.fn("chatStream")(function* (
   memory: History,
@@ -31,37 +40,27 @@ export const chatStream = Effect.fn("chatStream")(function* (
   {
     onDelta,
     ...requestOptions
-  }: ChatOptions & { onDelta?: (text: string) => void } = {}
+  }: ChatOptions & { onDelta?: (text: string) => Effect.Effect<void> } = {}
 ) {
   const claude = yield* Claude
   const withUser: History = [...memory, { role: "user", content: userText }]
   const result = yield* claude
     .stream({
-      messages: [...withUser],
-      ...requestOptions,
       max_tokens: 1000,
-      model: DEFAULT_MODEL
+      model: DEFAULT_MODEL,
+      messages: [...withUser],
+      ...requestOptions
     })
     .pipe(
       Stream.tap((chunk) => {
-        if (
-          chunk.type === "content_block_delta" &&
-          chunk.delta.type === "text_delta"
-        ) {
+        if (isTextDelta(chunk)) {
           const deltaText = chunk.delta.text
-          return Effect.sync(() => onDelta?.(deltaText))
+          return onDelta ? onDelta(deltaText) : Effect.void
         }
         return Effect.void
       }),
-      Stream.runFold<
-        {
-          txt: string
-          stopReason: Anthropic.StopReason | null
-          outputTokens: number | null
-        },
-        Anthropic.RawMessageStreamEvent
-      >(
-        () => ({
+      Stream.runFold(
+        (): StreamResult => ({
           txt: "",
           stopReason: null,
           outputTokens: null
@@ -73,10 +72,7 @@ export const chatStream = Effect.fn("chatStream")(function* (
               stopReason: chunk.delta.stop_reason,
               outputTokens: chunk.usage.output_tokens
             }
-          } else if (
-            chunk.type === "content_block_delta" &&
-            chunk.delta.type === "text_delta"
-          ) {
+          } else if (isTextDelta(chunk)) {
             return {
               txt: acc.txt + chunk.delta.text,
               stopReason: acc.stopReason,
