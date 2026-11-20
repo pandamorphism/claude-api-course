@@ -9,25 +9,32 @@ import {
 } from "../src/model.js"
 export class CoverageError extends Data.TaggedError("CoverageError")<{
   readonly message: string
-  readonly dataset: Dataset
 }> {
-  static readonly fromFailedNumberOfTestCases = (dataset: Dataset) =>
+  static readonly fromCategoryTestCasesNot3 = (
+    categoryTestCasesAreNot3: Record<string, number>
+  ) =>
     new CoverageError({
-      message: `Failed to generate dataset: test cases failed`,
-      dataset
+      message: `Category test cases not 3: ${JSON.stringify(categoryTestCasesAreNot3)}`
+    })
+
+  static readonly fromMissingJp = () =>
+    new CoverageError({
+      message: `Missing Japanese cases`
     })
 }
-const generateDataset = Effect.fn("GenerateDataset")(function* () {
+const generateDataset = Effect.fn("generateDataset")(function* () {
   const claude = yield* Claude
   const response = yield* claude.create({
     model: CHEAP_MODEL,
     max_tokens: 4000,
-    system: "You represent customers of vintage shop name Lachako",
+    system:
+      "You represent customers of vintage shop name Lachako. The shop sells vintage clothing and accessories. Located in Japan, delivery only in Japan and prices are in Japanese yen.",
     messages: [
       {
         role: "user",
-        content:
-          "Create 15 cases, 3 per category, at least 5 in Japanese, and returns cases that hint at a return without using the word. In the returns category, the customer only describes a problem with the item they received (wrong size, defect, differs from the photos). They must NOT ask for a refund, their money back, or to send the item back."
+        content: `Create 15 cases, 3 per category, at least 5 in Japanese, and returns cases that hint at a return without using the word.
+          In the returns category, the customer only describes a problem with the item they received (wrong size, defect, differs from the photos).
+          They must NOT ask for a refund, their money back, or to send the item back.`
       }
     ],
     output_config: {
@@ -45,8 +52,16 @@ export const checkCoverage = (dataset: Dataset) => {
     dataset.cases,
     (testCase) => testCase.category
   )
-  const hasMissingCategories =
-    Array.difference(Category.literals, Object.keys(casesByCategory)).length > 0
+
+  const categoryTestCasesAreNot3 = Category.literals.reduce(
+    (acc, category) => {
+      if (casesByCategory[category]?.length !== 3) {
+        acc[category] = casesByCategory[category]?.length ?? 0
+      }
+      return acc
+    },
+    {} as Record<typeof Category.Type, number>
+  )
 
   const casesByLangugage = Array.groupBy(
     dataset.cases,
@@ -54,13 +69,20 @@ export const checkCoverage = (dataset: Dataset) => {
   )
   const jpCount = casesByLangugage.ja?.length ?? 0
 
-  if (hasMissingCategories || jpCount < 5 || dataset.cases.length < 15) {
-    return Effect.fail(CoverageError.fromFailedNumberOfTestCases(dataset))
+  if (Object.keys(categoryTestCasesAreNot3).length > 0) {
+    return Effect.fail(
+      CoverageError.fromCategoryTestCasesNot3(categoryTestCasesAreNot3)
+    )
   }
+
+  if (jpCount < 5) {
+    return Effect.fail(CoverageError.fromMissingJp())
+  }
+
   return Effect.succeed(dataset)
 }
 
-const saveDataset = Effect.fn("SaveDataset")(function* (dataset: Dataset) {
+const saveDataset = Effect.fn("saveDataset")(function* (dataset: Dataset) {
   const fs = yield* FileSystem.FileSystem
   yield* fs.makeDirectory("data", { recursive: true })
   yield* fs.writeFileString(
@@ -84,7 +106,7 @@ const program = generateDataset().pipe(
       case "ClaudeError":
         return Console.error(describeError(err))
       case "CoverageError":
-        return Console.error(err.message, err.dataset)
+        return Console.error(err.message)
       default:
         return Console.error(err)
     }

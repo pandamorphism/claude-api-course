@@ -1,78 +1,78 @@
 {
   "cases": [
     {
-      "question": "How long does standard shipping take within the US?",
+      "question": "How long does standard shipping take to Hokkaido?",
       "language": "en",
       "category": "shipping"
     },
     {
-      "question": "Do you ship internationally to Canada, and what does it cost?",
-      "language": "en",
-      "category": "shipping"
-    },
-    {
-      "question": "注文から発送までどのくらいかかりますか？",
+      "question": "注文から発送まで何日くらいかかりますか？",
       "language": "ja",
       "category": "shipping"
     },
     {
-      "question": "Could you tell me the actual measurements of the chest and length on this 1980s denim jacket?",
+      "question": "代金引換は利用できますか？",
+      "language": "ja",
+      "category": "shipping"
+    },
+    {
+      "question": "What are the chest measurements on the 1980s bomber jacket?",
       "language": "en",
       "category": "sizing"
     },
     {
-      "question": "身長165cmです。このワンピースはMサイズで合いますか？",
+      "question": "このワンピースのウエストサイズは何センチですか？",
       "language": "ja",
       "category": "sizing"
     },
     {
-      "question": "このデニムジャケットのサイズ感は普通ですか、それとも大きめですか？",
-      "language": "ja",
+      "question": "Does this shirt run large or true to size?",
+      "language": "en",
       "category": "sizing"
     },
     {
-      "question": "Is there any fading, staining, or small holes on the 1970s Levi's jacket?",
+      "question": "Are there any holes or moth damage on the knit sweater?",
       "language": "en",
       "category": "condition"
     },
     {
-      "question": "このブラウスに汚れやシミはありますか？",
+      "question": "このバッグの持ち手に傷や汚れはありますか？",
       "language": "ja",
       "category": "condition"
     },
     {
-      "question": "How would you rate the overall condition of the vintage Pendleton wool coat?",
+      "question": "How would you describe the wear on the leather boots?",
       "language": "en",
       "category": "condition"
     },
     {
-      "question": "The jacket I received is a much brighter blue in person than in the photos, and the lining has a stain that wasn't mentioned.",
-      "language": "en",
-      "category": "returns"
-    },
-    {
-      "question": "届いたワンピースは写真と全く違う色で、袖に小さな穴もありました。",
+      "question": "届いた服は写真で見た印象より色がかなりくすんでいました。",
       "language": "ja",
       "category": "returns"
     },
     {
-      "question": "届いた靴のサイズが表記と合わず、かかとが大きく余ります。",
-      "language": "ja",
+      "question": "The jacket fits much smaller than the size listed on the tag.",
+      "language": "en",
       "category": "returns"
     },
     {
-      "question": "What's the best way to cook a good bowl of ramen at home?",
+      "question": "There's a noticeable tear in the lining that wasn't in the listing photos.",
       "language": "en",
-      "category": "off_topic"
+      "category": "returns"
     },
     {
-      "question": "今日の東京の天気はどうですか？",
+      "question": "東京でおすすめの古着屋さんはどこですか？",
       "language": "ja",
       "category": "off_topic"
     },
     {
-      "question": "Can you recommend a good book about the history of punk rock?",
+      "question": "What's the best way to cook a steak at home?",
       "language": "en",
+      "category": "off_topic"
+    },
+    {
+      "question": "今日は何曜日ですか？",
+      "language": "ja",
       "category": "off_topic"
     }
   ]
