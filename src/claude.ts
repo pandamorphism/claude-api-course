@@ -1,4 +1,5 @@
 import Anthropic from "@anthropic-ai/sdk"
+import type { Model } from "@anthropic-ai/sdk/resources/index.mjs"
 import {
   Config,
   Context,
@@ -10,7 +11,8 @@ import {
   Stream
 } from "effect"
 
-export const DEFAULT_MODEL = "claude-opus-5-5"
+export const DEFAULT_MODEL: Model = "claude-opus-5-5"
+export const CHEAP_MODEL: Model = "claude-haiku-5-5"
 
 export class ClaudeError extends Data.TaggedError("ClaudeError")<{
   readonly cause: unknown

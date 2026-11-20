@@ -1,0 +1,79 @@
+{
+  "cases": [
+    {
+      "question": "How long does standard shipping take within the US?",
+      "language": "en",
+      "category": "shipping"
+    },
+    {
+      "question": "Do you ship internationally to Canada, and what does it cost?",
+      "language": "en",
+      "category": "shipping"
+    },
+    {
+      "question": "注文から発送までどのくらいかかりますか？",
+      "language": "ja",
+      "category": "shipping"
+    },
+    {
+      "question": "Could you tell me the actual measurements of the chest and length on this 1980s denim jacket?",
+      "language": "en",
+      "category": "sizing"
+    },
+    {
+      "question": "身長165cmです。このワンピースはMサイズで合いますか？",
+      "language": "ja",
+      "category": "sizing"
+    },
+    {
+      "question": "このデニムジャケットのサイズ感は普通ですか、それとも大きめですか？",
+      "language": "ja",
+      "category": "sizing"
+    },
+    {
+      "question": "Is there any fading, staining, or small holes on the 1970s Levi's jacket?",
+      "language": "en",
+      "category": "condition"
+    },
+    {
+      "question": "このブラウスに汚れやシミはありますか？",
+      "language": "ja",
+      "category": "condition"
+    },
+    {
+      "question": "How would you rate the overall condition of the vintage Pendleton wool coat?",
+      "language": "en",
+      "category": "condition"
+    },
+    {
+      "question": "The jacket I received is a much brighter blue in person than in the photos, and the lining has a stain that wasn't mentioned.",
+      "language": "en",
+      "category": "returns"
+    },
+    {
+      "question": "届いたワンピースは写真と全く違う色で、袖に小さな穴もありました。",
+      "language": "ja",
+      "category": "returns"
+    },
+    {
+      "question": "届いた靴のサイズが表記と合わず、かかとが大きく余ります。",
+      "language": "ja",
+      "category": "returns"
+    },
+    {
+      "question": "What's the best way to cook a good bowl of ramen at home?",
+      "language": "en",
+      "category": "off_topic"
+    },
+    {
+      "question": "今日の東京の天気はどうですか？",
+      "language": "ja",
+      "category": "off_topic"
+    },
+    {
+      "question": "Can you recommend a good book about the history of punk rock?",
+      "language": "en",
+      "category": "off_topic"
+    }
+  ]
+}
