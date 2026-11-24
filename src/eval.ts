@@ -1,6 +1,9 @@
-import { Context, Effect, Layer } from "effect"
-import { ClaudeError } from "./claude.js"
+import { Context, Data, Effect, Layer } from "effect"
 import type { TestCase } from "./model.js"
+
+export class GraderError extends Data.TaggedError("GraderError")<{
+  readonly cause: unknown
+}> {}
 
 export class Grader extends Context.Service<
   Grader,
@@ -8,7 +11,7 @@ export class Grader extends Context.Service<
     readonly grade: (
       testCase: TestCase,
       output: string
-    ) => Effect.Effect<number, ClaudeError>
+    ) => Effect.Effect<number, GraderError>
   }
 >()("Grader") {}
 

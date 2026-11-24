@@ -1,10 +1,10 @@
 import { NodeFileSystem, NodeRuntime } from "@effect/platform-node"
 import { Console, Duration, Effect, FileSystem, Layer, Option } from "effect"
-import { CHEAP_MODEL, Claude, textOf } from "../src/claude.js"
-import { Grader, StubGrader } from "../src/eval.js"
+import { CHEAP_MODEL, Claude, ClaudeError, textOf } from "../src/claude.js"
+import { Grader, GraderError, StubGrader } from "../src/eval.js"
 import { Category, Dataset, decodeDataset, TestCase } from "../src/model.js"
 
-type GraderResult = {
+type EvalResult = {
   testCase: TestCase
   output: string
   score: number
@@ -29,7 +29,7 @@ export const runPrompt = Effect.fn("runPrompt")(function* (testCase: TestCase) {
 
 export const runTestCase = Effect.fn("runTestCase")(function* (
   testCase: TestCase
-) {
+): Effect.fn.Return<EvalResult, ClaudeError | GraderError, Claude | Grader> {
   const grader = yield* Grader
   const output = yield* runPrompt(testCase)
   const score = yield* grader.grade(testCase, output)
@@ -43,29 +43,19 @@ export const runEval = Effect.fn("runEval")(function* (dataset: Dataset) {
   return results
 })
 
-const avgScore = (results: GraderResult[]) =>
+const avgScore = (results: EvalResult[]) =>
   results.length === 0
     ? Option.none()
     : Option.some(
         results.reduce((acc, result) => acc + result.score, 0) / results.length
       )
 
-const report = (results: GraderResult[]) => {
+const report = (results: EvalResult[]) => {
   const averageScore = avgScore(results)
-  const byCategory = Category.literals.reduce(
-    (acc, category) => {
-      acc[category] = results.filter(
-        (result) => result.testCase.category === category
-      )
-      return acc
-    },
-    {} as Record<string, GraderResult[]>
-  )
-
   const averageByCategory = Object.fromEntries(
-    Object.entries(byCategory).map(([category, results]) => [
+    Category.literals.map((category) => [
       category,
-      avgScore(results)
+      avgScore(results.filter((r) => r.testCase.category === category))
     ])
   )
   return { averageScore, averageByCategory }
