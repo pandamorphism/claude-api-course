@@ -23,6 +23,7 @@ export const TestCase = Schema.Struct({
   language: Schema.Literals(["en", "ja"]),
   category: Category
 })
+export type TestCase = typeof TestCase.Type
 
 export const Dataset = Schema.Struct({
   cases: Schema.Array(TestCase)

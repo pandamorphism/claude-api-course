@@ -53,7 +53,9 @@ export class Claude extends Context.Service<
           catch: ClaudeError.fromCause
         }).pipe(
           Effect.retry({
-            schedule: Schedule.exponential("500 millis"),
+            schedule: Schedule.exponential("500 millis").pipe(
+              Schedule.jittered
+            ),
             times: 3,
             while: isRetryable
           })

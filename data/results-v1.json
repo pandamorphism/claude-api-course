@@ -1,0 +1,137 @@
+[
+  {
+    "testCase": {
+      "question": "How long does standard shipping take to Hokkaido?",
+      "language": "en",
+      "category": "shipping"
+    },
+    "output": "Standard shipping to Hokkaido usually takes about 2 to 4 business days after your order is dispatched, though remote areas may take a little longer. Once your order ships, we'll send you a tracking number so you can follow its progress.",
+    "score": 10
+  },
+  {
+    "testCase": {
+      "question": "注文から発送まで何日くらいかかりますか？",
+      "language": "ja",
+      "category": "shipping"
+    },
+    "output": "ご注文から発送までは、通常数営業日ほどかかります。商品の在庫状況や注文内容により前後する場合がございますので、正確な日数は商品ページの配送情報、またはご注文後に届く確認メールをご覧ください。ご不明な点があれば、お気軽にお問い合わせください。",
+    "score": 10
+  },
+  {
+    "testCase": {
+      "question": "代金引換は利用できますか？",
+      "language": "ja",
+      "category": "shipping"
+    },
+    "output": "ご質問ありがとうございます。代金引換の可否は、ご注文時の決済画面に表示される支払い方法でご確認いただけます。表示されない場合や詳しい条件をお知りになりたい場合は、お問い合わせフォームよりお気軽にご連絡ください。",
+    "score": 10
+  },
+  {
+    "testCase": {
+      "question": "What are the chest measurements on the 1980s bomber jacket?",
+      "language": "en",
+      "category": "sizing"
+    },
+    "output": "I'm sorry, but I don't have the exact chest measurements for this jacket. Please check the size details on its product page, or contact our staff directly so they can send you the flat-lay measurements. Since vintage sizing varies, a measurement comparison with a jacket you already own is often the most reliable guide.",
+    "score": 10
+  },
+  {
+    "testCase": {
+      "question": "このワンピースのウエストサイズは何センチですか？",
+      "language": "ja",
+      "category": "sizing"
+    },
+    "output": "お問い合わせありがとうございます。申し訳ございませんが、このワンピースの正確なウエストサイズは、こちらでは確認できておりません。商品ページの採寸表をご確認いただくか、商品名や商品ページのURLをお知らせいただければ、スタッフが改めて確認いたします。",
+    "score": 10
+  },
+  {
+    "testCase": {
+      "question": "Does this shirt run large or true to size?",
+      "language": "en",
+      "category": "sizing"
+    },
+    "output": "Vintage sizing tends to run smaller than modern sizing, so fit can vary from piece to piece. Each item's listing includes measurements (chest, length, etc.), which are the most reliable guide, so please compare them with a shirt you already own. If you tell me your usual size or measurements, I'm happy to help you judge the fit.",
+    "score": 10
+  },
+  {
+    "testCase": {
+      "question": "Are there any holes or moth damage on the knit sweater?",
+      "language": "en",
+      "category": "condition"
+    },
+    "output": "Thank you for your question! I don't have the detailed condition notes for this sweater, so I can't confirm whether it has any holes or moth damage. If you can share the item name or listing number, or request close-up photos of the knit, our staff can check and get back to you.",
+    "score": 10
+  },
+  {
+    "testCase": {
+      "question": "このバッグの持ち手に傷や汚れはありますか？",
+      "language": "ja",
+      "category": "condition"
+    },
+    "output": "ご質問ありがとうございます。持ち手の状態について、現時点では正確な情報を確認できておりません。商品ページの写真をご確認いただくか、持ち手のアップ写真をご希望の場合はお気軽にお申し付けください。",
+    "score": 10
+  },
+  {
+    "testCase": {
+      "question": "How would you describe the wear on the leather boots?",
+      "language": "en",
+      "category": "condition"
+    },
+    "output": "Thank you for your question! I don't have the detailed condition notes for these boots in front of me, so I'd rather not guess. Please check the item photos and condition description on the listing, or contact our staff directly for close-up photos of the leather.",
+    "score": 10
+  },
+  {
+    "testCase": {
+      "question": "届いた服は写真で見た印象より色がかなりくすんでいました。",
+      "language": "ja",
+      "category": "returns"
+    },
+    "output": "この度はご期待に沿えず申し訳ございません。ヴィンテージ品は経年による色の変化があり、写真では光の加減で印象が異なることもございます。ご注文番号と現物の写真をお送りいただければ、返品・交換の可否を確認いたします。",
+    "score": 10
+  },
+  {
+    "testCase": {
+      "question": "The jacket fits much smaller than the size listed on the tag.",
+      "language": "en",
+      "category": "returns"
+    },
+    "output": "I'm sorry the jacket runs smaller than the tag suggests. Vintage sizing often differs from modern standards, so we'd be happy to help with an exchange or return if you're within our policy window. Could you share the measurements you're working with so we can check them against the item's actual dimensions?",
+    "score": 10
+  },
+  {
+    "testCase": {
+      "question": "There's a noticeable tear in the lining that wasn't in the listing photos.",
+      "language": "en",
+      "category": "returns"
+    },
+    "output": "We're sorry the lining damage wasn't shown in the listing photos. Could you send us photos of the tear and the item's order number? We'll review it right away and discuss your options, including a return or refund if the damage wasn't disclosed.",
+    "score": 10
+  },
+  {
+    "testCase": {
+      "question": "東京でおすすめの古着屋さんはどこですか？",
+      "language": "ja",
+      "category": "off_topic"
+    },
+    "output": "東京では、古着店が多い**高円寺**や**下北沢**、**原宿・表参道**周辺がおすすめです。実店舗の場所は確認できないため、詳しくは当店の公式サイトや店舗情報をご覧いただくか、お問い合わせください。国内であれば、当店のオンラインストアからも商品をご注文いただけます。",
+    "score": 10
+  },
+  {
+    "testCase": {
+      "question": "What's the best way to cook a steak at home?",
+      "language": "en",
+      "category": "off_topic"
+    },
+    "output": "Great question! For a juicy steak, pat it dry, season generously with salt and pepper, and sear it in a very hot pan for 2-3 minutes per side, then rest it for a few minutes before slicing. For the best results, use a meat thermometer: about 52-54°C for medium-rare. Unfortunately, I can't offer cooking advice beyond that, but feel free to browse our vintage kitchenware if you need a good cast iron pan!",
+    "score": 10
+  },
+  {
+    "testCase": {
+      "question": "今日は何曜日ですか？",
+      "language": "ja",
+      "category": "off_topic"
+    },
+    "output": "申し訳ございません、現在の日付は把握しておりませんので、今日が何曜日かをお答えできません。お手数ですが、お使いの端末の日付表示をご確認いただけますと幸いです。ご注文や配送について他にご不明な点がございましたら、お気軽にお問い合わせください。",
+    "score": 10
+  }
+]
