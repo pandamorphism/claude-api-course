@@ -2,6 +2,7 @@ import { NodeFileSystem, NodeRuntime } from "@effect/platform-node"
 import {
   Array as Arr,
   Console,
+  Data,
   Duration,
   Effect,
   FileSystem,
@@ -17,7 +18,8 @@ import {
   describeError,
   textOf
 } from "../src/claude.js"
-import { EvalCaseError, Grader, GraderError, ModelGrader } from "../src/eval.js"
+import { Grader, GraderError } from "../src/eval.js"
+import { ModelGrader } from "../src/graders/model.js"
 import {
   Category,
   Dataset,
@@ -31,6 +33,10 @@ type EvalResult = {
   output: string
   gradeResult: GradeResult
 }
+export class EvalCaseError extends Data.TaggedError("EvalCaseError")<{
+  readonly testCase: TestCase
+  readonly cause: ClaudeError | GraderError
+}> {}
 
 export const runPrompt = Effect.fn("runPrompt")(function* (testCase: TestCase) {
   const claude = yield* Claude
@@ -150,6 +156,5 @@ program().pipe(
       NodeFileSystem.layer
     )
   ),
-  Effect.tap((results) => Console.log(results)),
   NodeRuntime.runMain
 )
