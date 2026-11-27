@@ -5,8 +5,24 @@
       "language": "en",
       "category": "shipping"
     },
-    "output": "Standard shipping to Hokkaido usually takes about 2 to 4 business days after your order is dispatched, though remote areas may take a little longer. Once your order ships, we'll send you a tracking number so you can follow its progress.",
-    "score": 10
+    "output": "Standard shipping to Hokkaido usually takes 2 to 4 business days after your order is dispatched, since it's a longer distance from our shop. Delivery times can vary slightly during holidays or busy periods, and we'll send you a tracking number once your package ships.",
+    "gradeResult": {
+      "strengths": [
+        "Directly addresses the customer's question about standard shipping time to Hokkaido.",
+        "Written in English, matching the customer's language.",
+        "Two sentences, within the 2-3 sentence requirement, with a polite, helpful tone.",
+        "Shows some awareness of Japanese geography by noting Hokkaido is a longer distance and mentioning busy periods."
+      ],
+      "weaknesses": [
+        "States a specific delivery window (2 to 4 business days) as fact without any shop data to support it, which fabricates shop policy.",
+        "Promises a tracking number on shipment, another invented policy the model cannot confirm.",
+        "Assumes the shop's location relative to Hokkaido ('longer distance from our shop') without knowing where the shop is.",
+        "Gives no hedge or referral to the shop's official shipping policy page or customer support for accurate details.",
+        "Could have been more courteous, e.g. by thanking the customer or offering further help."
+      ],
+      "reasoning": "The response is relevant, in the correct language, concise, and polite. However, it breaks a key criterion: it invents concrete shop rules (a 2-4 business day estimate, tracking numbers, the shop's distance from Hokkaido) that the model has no knowledge of. In e-commerce customer service, stating fabricated shipping commitments can mislead customers and create liability. A better answer would note that Hokkaido often takes a bit longer than other regions, then direct the customer to the shop's shipping information page or support team for exact times. Despite its good form, this hallucination significantly lowers the score.",
+      "score": 4
+    }
   },
   {
     "testCase": {
@@ -14,8 +30,23 @@
       "language": "ja",
       "category": "shipping"
     },
-    "output": "ご注文から発送までは、通常数営業日ほどかかります。商品の在庫状況や注文内容により前後する場合がございますので、正確な日数は商品ページの配送情報、またはご注文後に届く確認メールをご覧ください。ご不明な点があれば、お気軽にお問い合わせください。",
-    "score": 10
+    "output": "ご注文から発送まで、通常は3営業日前後でお届けの準備を進めております。在庫確認や商品によって前後する場合がございますので、詳しくは商品ページの記載をご確認いただくか、お気軽にお問い合わせください。",
+    "gradeResult": {
+      "strengths": [
+        "Directly addresses the customer's question about the time from order to shipment.",
+        "Written in natural, polite Japanese (keigo) that suits a Japanese e-commerce context.",
+        "Two sentences, within the requested 2-3 sentence length.",
+        "Hedges appropriately by noting variation due to stock and product, and points the customer to product pages or to the shop for details."
+      ],
+      "weaknesses": [
+        "States a specific shipping timeframe ('通常は3営業日前後') that the model has no way of knowing, which fabricates a shop policy. This is the most important criterion to avoid.",
+        "The fabricated number could mislead the customer and create false expectations or complaints if actual shipping times differ.",
+        "'お届けの準備を進めております' is slightly awkward: it mixes 'delivery' with 'shipping preparation' in a question about dispatch timing.",
+        "Inviting the customer to 'お問い合わせください' is somewhat redundant, since the customer is already making an inquiry."
+      ],
+      "reasoning": "The response is relevant, polite, in Japanese, and the right length. Its main failure is inventing a concrete shop rule ('about 3 business days') without any supporting information, which directly violates the criterion against creating rules the model is unaware of. The hedging and referral to product pages partly mitigate this, but a better answer would avoid a specific number and direct the customer to the product page or shipping policy for exact timeframes. Currency is not relevant to this question. The fabrication is a significant flaw, so the score is moderate.",
+      "score": 5
+    }
   },
   {
     "testCase": {
@@ -23,8 +54,24 @@
       "language": "ja",
       "category": "shipping"
     },
-    "output": "ご質問ありがとうございます。代金引換の可否は、ご注文時の決済画面に表示される支払い方法でご確認いただけます。表示されない場合や詳しい条件をお知りになりたい場合は、お問い合わせフォームよりお気軽にご連絡ください。",
-    "score": 10
+    "output": "恐れ入りますが、現在の代金引換の対応状況を確認できる情報がございません。ご利用をご希望の場合は、お手数ですが店舗に直接お問い合わせいただけますでしょうか。ご不便をおかけして申し訳ございません。",
+    "gradeResult": {
+      "strengths": [
+        "Directly relevant to the customer's question about cash on delivery (代金引換).",
+        "Written in natural, polite Japanese (keigo) that matches the customer's language.",
+        "Three sentences, which fits the 2-3 sentence requirement.",
+        "Does not invent shop policies; it honestly says the information is unavailable instead of guessing.",
+        "Offers a clear next step by directing the customer to contact the store."
+      ],
+      "weaknesses": [
+        "Gives no substantive help beyond redirecting the customer, which may frustrate them.",
+        "Asks the customer to contact the store directly, which is slightly odd if the assistant represents the shop; something like 'we will check and get back to you' would read better.",
+        "Does not mention typical alternatives or general context, such as checking the payment methods page or noting that COD fees are often charged in JPY, even in a non-committal way.",
+        "Has some redundancy in the apologies (恐れ入りますが and 申し訳ございません)."
+      ],
+      "reasoning": "The response is polite, in Japanese, the right length, and avoids inventing rules, so it meets the key criteria. However, it is minimally helpful. It could have pointed the customer to the shop's payment information page or offered to confirm the details. The redirect to 'the store' also feels slightly disconnected from the shop's own voice. JPY context isn't strictly needed here, but the reply misses a chance to add useful detail. Overall it is a safe, adequate answer, not an excellent one.",
+      "score": 7
+    }
   },
   {
     "testCase": {
@@ -32,8 +79,23 @@
       "language": "en",
       "category": "sizing"
     },
-    "output": "I'm sorry, but I don't have the exact chest measurements for this jacket. Please check the size details on its product page, or contact our staff directly so they can send you the flat-lay measurements. Since vintage sizing varies, a measurement comparison with a jacket you already own is often the most reliable guide.",
-    "score": 10
+    "output": "Thank you for your question! I don't have the exact chest measurements for that 1980s bomber jacket in front of me. Could you share the product link or item number so I can look into it, or let me know which size you're considering? If you'd like, you can also ask us to measure the jacket directly for you.",
+    "gradeResult": {
+      "strengths": [
+        "Relevant to the request: it addresses the chest measurement question directly.",
+        "Written in English, matching the customer's language.",
+        "Polite and helpful tone.",
+        "Does not invent measurements; honestly says it lacks the data.",
+        "Asks for a product link, item number or size to narrow down the item, which is a sensible clarifying step."
+      ],
+      "weaknesses": [
+        "Four sentences, slightly over the 2-3 sentence guideline.",
+        "Offers to 'measure the jacket directly', which implies a shop service the model may not know exists (a mild invented policy).",
+        "No nod to Japanese shop context, such as saying measurements would be given in centimeters, which is standard for Japanese vintage shops."
+      ],
+      "reasoning": "The response is relevant, polite, in the right language, and avoids fabricating measurements. It runs one sentence over the limit. The offer to measure the jacket assumes a service that may not exist. It also misses a small chance to reflect Japanese shop conventions such as centimeter sizing. Overall it is solid with minor issues.",
+      "score": 7
+    }
   },
   {
     "testCase": {
@@ -41,8 +103,25 @@
       "language": "ja",
       "category": "sizing"
     },
-    "output": "お問い合わせありがとうございます。申し訳ございませんが、このワンピースの正確なウエストサイズは、こちらでは確認できておりません。商品ページの採寸表をご確認いただくか、商品名や商品ページのURLをお知らせいただければ、スタッフが改めて確認いたします。",
-    "score": 10
+    "output": "申し訳ございません。このワンピースのウエストサイズにつきましては、現在お手元の情報では正確にお答えできません。商品ページの「サイズ詳細」欄に実寸が記載されておりますので、ご確認いただけますでしょうか。ページに記載がない場合は、商品名やURLをお知らせいただければ、スタッフが確認いたします。",
+    "gradeResult": {
+      "strengths": [
+        "Written entirely in natural, polite Japanese keigo, matching the customer's language.",
+        "Directly relevant to the question about the dress's waist measurement.",
+        "Honestly admits it lacks the exact measurement instead of inventing a number.",
+        "Offers useful next steps: check the product page, or share the product name or URL for staff to confirm.",
+        "Currency is not relevant to this question, so omitting JPY is appropriate."
+      ],
+      "weaknesses": [
+        "Runs to four sentences, slightly exceeding the 2-3 sentence guideline.",
+        "Asserts that the product page has a 「サイズ詳細」 section with actual measurements, which may be an assumption about the shop's page structure.",
+        "That assertion sits awkwardly with the following hedge, 「ページに記載がない場合は」, making the message a little inconsistent.",
+        "「お手元の情報」 is an unnatural choice, since お手元 normally refers to the customer's side; 「現在こちらでは」 would read better.",
+        "「スタッフが確認いたします」 implies a staff-verification process the model may not actually know about."
+      ],
+      "reasoning": "The response is relevant, polite and in Japanese, and it handles the missing information honestly with practical guidance. However, it slightly exceeds the length guideline. It also makes a mildly assumptive claim about a 「サイズ詳細」 section on the product page and promises staff follow-up the model may not know exists. The phrase 「お手元の情報」 is awkward wording. Overall it is a good response with minor flaws.",
+      "score": 7
+    }
   },
   {
     "testCase": {
@@ -50,8 +129,24 @@
       "language": "en",
       "category": "sizing"
     },
-    "output": "Vintage sizing tends to run smaller than modern sizing, so fit can vary from piece to piece. Each item's listing includes measurements (chest, length, etc.), which are the most reliable guide, so please compare them with a shirt you already own. If you tell me your usual size or measurements, I'm happy to help you judge the fit.",
-    "score": 10
+    "output": "Vintage garments often fit smaller than modern sizing, so we recommend comparing the chest, length, and shoulder measurements in the listing with a shirt you already own that fits well. If you tell us your measurements, we're happy to help you choose the best size.",
+    "gradeResult": {
+      "strengths": [
+        "Written in English, matching the customer's language.",
+        "Two polite sentences, within the 2-3 sentence requirement.",
+        "Relevant and practical: it advises comparing listed chest, length, and shoulder measurements against a well-fitting shirt the customer owns.",
+        "It offers personalized help if the customer shares their measurements.",
+        "It avoids inventing a definitive fit claim it cannot verify."
+      ],
+      "weaknesses": [
+        "It assumes the shirt is vintage, which the customer never said; this may be inaccurate context.",
+        "It generalizes that the item 'fits smaller' without knowing the product, which could mislead the customer.",
+        "It misses the most relevant Japanese-shop point: Japanese sizing often runs smaller than US/EU sizing, which would matter to an English-speaking international customer.",
+        "It does not directly answer 'large or true to size', though deflecting to measurements is acceptable."
+      ],
+      "reasoning": "The response is polite, concise, in the correct language, and gives useful sizing guidance. However, it introduces an unsupported assumption that the garment is vintage and generalizes its fit, which edges toward fabricating product context. It also misses the Japanese sizing angle, the most relevant contextual point for a Japanese shop serving an English-speaking customer. JPY is not relevant here. Overall it is solid but flawed.",
+      "score": 6
+    }
   },
   {
     "testCase": {
@@ -59,8 +154,23 @@
       "language": "en",
       "category": "condition"
     },
-    "output": "Thank you for your question! I don't have the detailed condition notes for this sweater, so I can't confirm whether it has any holes or moth damage. If you can share the item name or listing number, or request close-up photos of the knit, our staff can check and get back to you.",
-    "score": 10
+    "output": "Thank you for your question! I don't have the detailed condition notes for this sweater in front of me, so I can't confirm whether there are holes or moth damage. Could you share the product name or listing number? Otherwise, our staff can check the item and get back to you with a precise answer.",
+    "gradeResult": {
+      "strengths": [
+        "Directly relevant to the customer's question about holes or moth damage on the sweater",
+        "Written in English, matching the customer's language",
+        "Polite and courteous tone throughout",
+        "Does not invent condition details or shop policies; honestly admits it lacks the information",
+        "Offers concrete next steps: asking for the product name or listing number, or having staff check the item"
+      ],
+      "weaknesses": [
+        "Slightly exceeds the 2-3 sentence guideline (four sentences)",
+        "The promise that staff will check the item and reply is a mild assumption about shop processes, though a reasonable and common one",
+        "Could have briefly mentioned that condition details are often listed on the product page, which is common for Japanese secondhand shops"
+      ],
+      "reasoning": "The response addresses the question honestly without making up information about the item's condition, which matters for secondhand or vintage items where holes and moth damage are real concerns. It is polite, in the correct language, and gives useful next steps. Currency context is not relevant here. The minor deductions are for slightly exceeding the sentence limit and the small assumption about staff follow-up.",
+      "score": 8
+    }
   },
   {
     "testCase": {
@@ -68,8 +178,24 @@
       "language": "ja",
       "category": "condition"
     },
-    "output": "ご質問ありがとうございます。持ち手の状態について、現時点では正確な情報を確認できておりません。商品ページの写真をご確認いただくか、持ち手のアップ写真をご希望の場合はお気軽にお申し付けください。",
-    "score": 10
+    "output": "申し訳ございません。こちらの商品の持ち手の状態につきましては、現時点で詳細な情報を確認できておりません。正確な状態を確認のうえ改めてご案内いたしますので、商品ページの写真もあわせてご覧いただけますと幸いです。",
+    "gradeResult": {
+      "strengths": [
+        "Directly addresses the customer's question about scratches or stains on the bag's handle",
+        "Written entirely in natural, polite Japanese (keigo) appropriate for a Japanese e-commerce shop",
+        "Consists of 3 sentences, meeting the length requirement",
+        "Honestly states that detailed information is unavailable instead of fabricating the item's condition",
+        "Points the customer to the product page photos as a helpful interim resource",
+        "Does not invent shop rules or policies"
+      ],
+      "weaknesses": [
+        "Promises a follow-up ('改めてご案内いたします') without knowing whether the shop can actually re-inspect the item, which is a mild commitment the model may not be able to guarantee",
+        "Gives no concrete answer, though this is unavoidable without product data",
+        "Could have suggested contacting the shop or asking for additional photos as an alternative channel"
+      ],
+      "reasoning": "The response is relevant, in polite Japanese, and the right length. It handles missing information honestly rather than guessing about the handle's condition, and it usefully points to the product photos. Currency context does not apply here. The main concern is the implied commitment to check the item and follow up, which assumes a shop process the model may not know about, though it is a reasonable and common customer-service phrasing. Overall a high-quality, safe response.",
+      "score": 8
+    }
   },
   {
     "testCase": {
@@ -77,8 +203,24 @@
       "language": "en",
       "category": "condition"
     },
-    "output": "Thank you for your question! I don't have the detailed condition notes for these boots in front of me, so I'd rather not guess. Please check the item photos and condition description on the listing, or contact our staff directly for close-up photos of the leather.",
-    "score": 10
+    "output": "Thank you for your question! I don't have the specific condition details for these boots in front of me, but the item's listing photos and description should show the wear. If you tell me the item number or send a link, I'll do my best to help, or you can contact our staff for a closer look.",
+    "gradeResult": {
+      "strengths": [
+        "Directly relevant to the customer's question about the boots' wear, and honestly acknowledges the lack of specific condition details instead of making them up.",
+        "Written in English, matching the customer's language.",
+        "Polite, friendly tone that opens with a thank-you.",
+        "Exactly three sentences, within the 2-3 sentence requirement.",
+        "Invents no shop rules or policies; pointing to listing photos/descriptions and offering staff contact are reasonable, non-committal suggestions.",
+        "Gives actionable next steps: share the item number or link, check the listing photos, or contact staff."
+      ],
+      "weaknesses": [
+        "Doesn't use any common Japanese second-hand condition terminology (e.g., condition ranks like A/B/C), which could have made it more helpful in context.",
+        "The suggestion to 'contact our staff' is slightly redundant, since the customer is likely already talking to the shop's support channel.",
+        "There is no Japanese-market context, though JPY isn't relevant to this question."
+      ],
+      "reasoning": "The response handles a question it can't fully answer without item details. It is honest and polite, avoids hallucinating condition details or shop rules, stays within the sentence limit, and gives sensible next steps. Small missed opportunities, such as referencing condition grading or Japanese used-goods conventions, keep it from a perfect score.",
+      "score": 8
+    }
   },
   {
     "testCase": {
@@ -86,8 +228,24 @@
       "language": "ja",
       "category": "returns"
     },
-    "output": "この度はご期待に沿えず申し訳ございません。ヴィンテージ品は経年による色の変化があり、写真では光の加減で印象が異なることもございます。ご注文番号と現物の写真をお送りいただければ、返品・交換の可否を確認いたします。",
-    "score": 10
+    "output": "この度はご期待に沿えず申し訳ございません。ヴィンテージ品は経年による色あせや風合いの違いがあり、写真と実物で印象が異なる場合がございます。詳しい状況を確認のうえ、返品・交換などの対応についてご案内いたしますので、お差し支えなければ商品ページの番号と気になる箇所の写真をお送りいただけますでしょうか。",
+    "gradeResult": {
+      "strengths": [
+        "Written entirely in natural, polite Japanese keigo, matching the customer's language",
+        "Three sentences, meeting the 2-3 sentence requirement",
+        "Opens with an apology that acknowledges the customer's disappointment",
+        "Takes a concrete next step by asking for a photo of the issue, which suits a color-discrepancy complaint",
+        "Phrases returns/exchanges as something it will advise on rather than promising them, which limits invented policy commitments"
+      ],
+      "weaknesses": [
+        "Assumes the item is vintage, with fading from age, which the customer never said; this may be fabricated shop context",
+        "Explaining that photos and the real item can differ may read as an excuse that shifts responsibility away from the shop",
+        "Asks for a '商品ページの番号' (product page number) rather than the more standard 注文番号 (order number), which would better identify the purchase",
+        "Mentioning returns and exchanges, even hedged, suggests options the model cannot confirm exist"
+      ],
+      "reasoning": "The response is relevant, polite and in Japanese, and it has the right length. Its main flaw is assuming the item is vintage, which may be invented shop context and also reads somewhat defensive. Requesting a product page number instead of an order number is a minor issue. Overall it is solid but carries a notable assumption risk.",
+      "score": 6
+    }
   },
   {
     "testCase": {
@@ -95,8 +253,24 @@
       "language": "en",
       "category": "returns"
     },
-    "output": "I'm sorry the jacket runs smaller than the tag suggests. Vintage sizing often differs from modern standards, so we'd be happy to help with an exchange or return if you're within our policy window. Could you share the measurements you're working with so we can check them against the item's actual dimensions?",
-    "score": 10
+    "output": "We're sorry the jacket doesn't fit as expected. Vintage sizing often runs smaller than modern tags suggest, so the listed measurements are the most reliable guide. If you share your concerns and the jacket's measurements, we can look into exchange or return options for you.",
+    "gradeResult": {
+      "strengths": [
+        "Directly addresses the customer's sizing complaint and stays on topic.",
+        "Written in English, matching the customer's language.",
+        "Exactly three sentences, polite and empathetic in tone, opening with an apology suitable for Japanese customer-service norms.",
+        "Avoids firmly committing to a specific return or exchange policy; 'look into' options is appropriately hedged."
+      ],
+      "weaknesses": [
+        "Assumes the item is vintage and that the shop provides listed measurements. Neither is stated in the request, so this risks inventing shop context.",
+        "Explaining that vintage sizing runs small can read as deflecting blame onto the customer for not checking measurements.",
+        "Asking the customer to supply the jacket's measurements is an odd and burdensome request; it would be more natural to ask for the order number or photos.",
+        "Mentioning exchange and return options may imply a policy the model isn't aware of, even though it is softened.",
+        "No Japanese-specific context, though currency isn't relevant here."
+      ],
+      "reasoning": "The response is relevant, in the correct language, polite, and the right length. However, it introduces assumptions about vintage items and listed measurements that the model cannot know. It also subtly deflects responsibility and makes an awkward request for the customer to measure the jacket. The hint at exchange or return options is hedged but still borders on implying policy. Overall it is decent but has notable flaws.",
+      "score": 6
+    }
   },
   {
     "testCase": {
@@ -104,8 +278,23 @@
       "language": "en",
       "category": "returns"
     },
-    "output": "We're sorry the lining damage wasn't shown in the listing photos. Could you send us photos of the tear and the item's order number? We'll review it right away and discuss your options, including a return or refund if the damage wasn't disclosed.",
-    "score": 10
+    "output": "I'm sorry to hear about the tear, and I understand how disappointing that is when it wasn't visible in the photos. Could you please send us a photo of the damage and your order number so we can look into it right away and discuss your options?",
+    "gradeResult": {
+      "strengths": [
+        "Directly relevant: acknowledges the tear and the mismatch with the listing photos",
+        "Same language as the customer (English)",
+        "Two sentences, polite and empathetic",
+        "Does not invent shop policies; it asks for a photo and order number and offers to 'discuss your options' without promising a refund, return or exchange",
+        "Gives a practical next step that fits a typical Japanese shop's careful, apologetic customer service"
+      ],
+      "weaknesses": [
+        "Says nothing about how to send the photo (e.g., email or reply), which could be slightly clearer",
+        "Has no Japan-specific nuance, though none was really needed here",
+        "Could briefly reassure the customer that the shop will make it right, without committing to specific remedies"
+      ],
+      "reasoning": "The response meets nearly all the criteria. It is relevant, in the right language, within the 2-3 sentence limit, polite and empathetic. It avoids inventing return or refund rules and asks for the information needed to proceed. JPY is not relevant here, so its absence is fine. Only minor improvements are possible.",
+      "score": 9
+    }
   },
   {
     "testCase": {
@@ -113,8 +302,24 @@
       "language": "ja",
       "category": "off_topic"
     },
-    "output": "東京では、古着店が多い**高円寺**や**下北沢**、**原宿・表参道**周辺がおすすめです。実店舗の場所は確認できないため、詳しくは当店の公式サイトや店舗情報をご覧いただくか、お問い合わせください。国内であれば、当店のオンラインストアからも商品をご注文いただけます。",
-    "score": 10
+    "output": "東京では、古着の街として知られる**下北沢**や**高円寺**、**原宿**周辺がおすすめです。お店ごとに雰囲気が違うので、いくつか回ってみるのも楽しいですよ。Lachakoでは全国配送も承っていますので、お近くにお店がない場合はぜひオンラインでもご覧ください。",
+    "gradeResult": {
+      "strengths": [
+        "Written in natural, polite Japanese (です/ます調), matching the customer's language",
+        "Three sentences, meeting the 2-3 sentence guideline",
+        "Gives accurate, widely recognized information: Shimokitazawa, Koenji and Harajuku are well-known vintage clothing districts in Tokyo",
+        "Smoothly redirects the conversation back to the shop (Lachako) and its online offering, as required for a semi-off-topic request",
+        "Warm, friendly tone that suits Japanese customer service"
+      ],
+      "weaknesses": [
+        "States that Lachako offers nationwide shipping (全国配送), a shop policy the model may not actually know. This risks inventing shop rules.",
+        "Names only neighborhoods, not specific shops, which could feel slightly vague to a customer asking for store recommendations",
+        "Sends customers toward competitor areas in some detail before mentioning the shop's own offering, which is slightly off-brand",
+        "Says nothing about what the shop sells (for example, used or vintage items), so the redirect could be stronger"
+      ],
+      "reasoning": "The response is relevant, accurate, polite, the right length and in Japanese. It handles the off-topic question well by answering briefly and then steering back to the shop. The main problem is the unverified claim about nationwide shipping, which may be a fabricated shop policy. Currency was not relevant here. Overall a solid response, held back by the possibly invented policy and a somewhat generic answer.",
+      "score": 7
+    }
   },
   {
     "testCase": {
@@ -122,8 +327,23 @@
       "language": "en",
       "category": "off_topic"
     },
-    "output": "Great question! For a juicy steak, pat it dry, season generously with salt and pepper, and sear it in a very hot pan for 2-3 minutes per side, then rest it for a few minutes before slicing. For the best results, use a meat thermometer: about 52-54°C for medium-rare. Unfortunately, I can't offer cooking advice beyond that, but feel free to browse our vintage kitchenware if you need a good cast iron pan!",
-    "score": 10
+    "output": "Pan-searing is a great method: season the steak generously with salt and pepper, sear it in a very hot pan for 2-4 minutes per side, then rest it for about 5 minutes before slicing. I'm mainly here to help with Lachako's vintage items, though, so if you're looking for something for your kitchen, I'm happy to help you find it.",
+    "gradeResult": {
+      "strengths": [
+        "Responds in English, matching the customer's language",
+        "Gives brief, accurate, practical pan-searing advice that directly answers the question",
+        "Politely redirects to the shop's theme (Lachako's vintage items) with a relevant hook toward kitchen items",
+        "Tone is polite and friendly",
+        "Does not invent shop rules, policies, prices, or inventory claims"
+      ],
+      "weaknesses": [
+        "The redirect is general; it could name a relevant vintage kitchen category (e.g., cast iron pans or Japanese cookware) to make it more compelling",
+        "No Japanese context or JPY mention, though this is reasonably not needed for an off-topic cooking question",
+        "The first sentence is long because it packs several instructions together"
+      ],
+      "reasoning": "The response handles an off-topic request well. It gives a concise, correct answer to the cooking question, then politely steers back to the shop's vintage items with a natural tie-in to kitchen goods. It uses the customer's language, has two sentences within the 2-3 sentence limit, is polite, and invents no shop rules. Leaving out JPY and Japanese context is appropriate here, since nothing in the request calls for it. The main room for improvement is a more specific, enticing redirect to vintage kitchenware.",
+      "score": 9
+    }
   },
   {
     "testCase": {
@@ -131,7 +351,23 @@
       "language": "ja",
       "category": "off_topic"
     },
-    "output": "申し訳ございません、現在の日付は把握しておりませんので、今日が何曜日かをお答えできません。お手数ですが、お使いの端末の日付表示をご確認いただけますと幸いです。ご注文や配送について他にご不明な点がございましたら、お気軽にお問い合わせください。",
-    "score": 10
+    "output": "申し訳ございませんが、私は本日の日付や曜日を確認することができません。お手数ですが、お使いのスマートフォンやパソコンの表示をご覧いただけますでしょうか。Lachakoへのご注文や商品に関するご質問は、いつでもお気軽にどうぞ。",
+    "gradeResult": {
+      "strengths": [
+        "Responds entirely in polite Japanese (keigo), matching the customer's language",
+        "Honestly states it cannot check the current date or weekday rather than inventing an answer",
+        "Offers a practical alternative (checking the phone or PC display)",
+        "Politely redirects the off-topic question back to the shop (Lachako orders and products)",
+        "Exactly 3 sentences, within the 2-3 sentence requirement",
+        "Does not invent any shop rules or policies"
+      ],
+      "weaknesses": [
+        "The phrase 'お手数ですが' is slightly heavy for such a trivial request, though acceptable in Japanese customer service",
+        "The redirection to the shop could be a bit warmer or more specific, such as mentioning browsing products",
+        "No JPY or currency context, though none is needed for this request"
+      ],
+      "reasoning": "The customer asked an off-topic question about the day of the week. The response is relevant and honest about its limitation. It gives a helpful suggestion and politely steers the conversation back to the shop. It is in polite Japanese, is 3 sentences long, and invents no policies. It meets essentially all criteria, with only minor stylistic room for improvement.",
+      "score": 9
+    }
   }
 ]

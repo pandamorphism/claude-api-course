@@ -35,3 +35,29 @@ export const decodeDataset = Schema.decodeEffect(Schema.fromJsonString(Dataset))
 export const DatasetJsonSchema = Schema.toJsonSchemaDocument(Dataset, {
   onExcessProperty: "error"
 })
+
+export const GradeResultApi = Schema.Struct({
+  strengths: Schema.Array(Schema.String),
+  weaknesses: Schema.Array(Schema.String),
+  reasoning: Schema.String,
+  score: Schema.Finite.annotate({
+    description: "this field must be an integer between 1 and 10"
+  })
+})
+
+export const GradeResult = Schema.Struct({
+  ...GradeResultApi.fields,
+  score: Schema.Int.check(Schema.isBetween({ minimum: 1, maximum: 10 }))
+})
+export type GradeResult = typeof GradeResult.Type
+
+export type GradeResultApi = typeof GradeResultApi.Type
+export const GradeResultJsonSchema = Schema.toJsonSchemaDocument(
+  GradeResultApi,
+  {
+    onExcessProperty: "error"
+  }
+)
+export const decodeGradeResult = Schema.decodeEffect(
+  Schema.fromJsonString(GradeResult)
+)
