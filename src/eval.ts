@@ -13,7 +13,7 @@ export class GraderError extends Data.TaggedError("GraderError")<{
 
 export class EvalCaseError extends Data.TaggedError("EvalCaseError")<{
   readonly testCase: TestCase
-  cause: ClaudeError | GraderError
+  readonly cause: ClaudeError | GraderError
 }> {}
 
 export class Grader extends Context.Service<
